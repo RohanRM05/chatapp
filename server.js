@@ -1,7 +1,12 @@
 const express = require('express');
 const app = express();
 const server = require('http').Server(app);
-const io = require('socket.io')(server);
+const io = require('socket.io')(server, {
+  cors: {
+    origin: "https://chatapp-t3il.onrender.com", // Allow connection from your client URL
+    methods: ["GET", "POST"]
+  }
+});
 
 app.set('views', './views');
 app.set('view engine', 'ejs');
@@ -30,8 +35,9 @@ app.get('/:room', (req, res) => {
   res.render('room', { roomName: req.params.room });
 });
 
-server.listen(3000, () => {
-  console.log('Server running at http://localhost:3000');
+const PORT = process.env.PORT || 3000;
+server.listen(PORT, () => {
+  console.log(`Server running at http://localhost:${PORT}`);
 });
 
 const users = {};
