@@ -4,11 +4,25 @@ document.addEventListener('DOMContentLoaded', () => {
   const messageForm = document.getElementById('send-container');
   const messageInput = document.getElementById('message-input');
 
+  if (!messageContainer || !messageForm || !messageInput) {
+    console.error('One or more elements not found in the DOM');
+    return;
+  }
+
   let name = localStorage.getItem('name');
+  console.log('Retrieved name from localStorage:', name); // Log retrieved name
+
   if (!name) {
     name = prompt('What is your name?');
-    localStorage.setItem('name', name);
+    if (name) {
+      localStorage.setItem('name', name);
+      console.log('Name set in localStorage:', name); // Log set name
+    } else {
+      console.error('No name entered');
+      return; // Exit if no name is provided
+    }
   }
+
   appendMessage('You joined');
   socket.emit('new-user', name);
 
