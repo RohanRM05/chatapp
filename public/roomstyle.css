@@ -12,38 +12,29 @@ body {
 }
 
 #message-container {
-  width: 35%;
-  height: 50%;
-  max-width: 1200px;
-  max-height: 600px;
+  width: 90%;
+  height: 70%;
+  max-width: 600px;
+  max-height: 500px;
   border: 2px solid #ee0c0c;
   border-radius: 10px;
   overflow-y: auto;
   background-color: #b4cbe7;
   padding: 10px;
   margin-bottom: 10px;
-  
 }
 
 #message-container div {
   color: #1d2627;
   padding: 10px;
   margin: 5px 0;
-
-
-  border: 2px solid #ee0c0c;
-  border-radius: 10px;
-
-}
-
-#message-container div:nth-child(2n) {
   border: 2px solid #ee0c0c;
   border-radius: 10px;
 }
 
 #send-container {
-  width: 35%;
-  max-width: 1200px;
+  width: 90%;
+  max-width: 600px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -72,4 +63,16 @@ body {
 
 #send-button:hover {
   background-color: #0056b3;
+}
+
+@media (min-width: 600px) {
+  #message-container, #send-container {
+    width: 50%;
+  }
+}
+
+@media (min-width: 1024px) {
+  #message-container, #send-container {
+    width: 35%;
+  }
 }
