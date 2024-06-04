@@ -9,18 +9,10 @@ document.addEventListener('DOMContentLoaded', () => {
     return;
   }
 
-  let name = localStorage.getItem('name');
-  console.log('Retrieved name from localStorage:', name); // Log retrieved name
-
+  let name = prompt('What is your name?');
   if (!name) {
-    name = prompt('What is your name?');
-    if (name) {
-      localStorage.setItem('name', name);
-      console.log('Name set in localStorage:', name); // Log set name
-    } else {
-      console.error('No name entered');
-      return; // Exit if no name is provided
-    }
+    console.error('No name entered');
+    return; // Exit if no name is provided
   }
 
   appendMessage('You joined');
