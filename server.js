@@ -1,9 +1,11 @@
 const express = require('express');
 const app = express();
-const server = require('http').Server(app);
-const io = require('socket.io')(server, {
+const http = require('http');
+const server = http.createServer(app);
+const { Server } = require('socket.io');
+const io = new Server(server, {
   cors: {
-    origin: "https://chatapp-t3il.onrender.com", // Allow connection from your client URL
+    origin: "https://chatapp-t3il.onrender.com", // Allow your client URL
     methods: ["GET", "POST"]
   }
 });
@@ -42,16 +44,16 @@ server.listen(PORT, () => {
 
 const users = {};
 
-io.on('connection', socket => {
+io.on('connection', (socket) => {
   console.log('New user connected');
 
-  socket.on('new-user', name => {
+  socket.on('new-user', (name) => {
     users[socket.id] = name;
     socket.broadcast.emit('user-connected', name);
     console.log(`${name} connected`);
   });
 
-  socket.on('send-chat-message', message => {
+  socket.on('send-chat-message', (message) => {
     socket.broadcast.emit('chat-message', { message: message, name: users[socket.id] });
     console.log(`Message from ${users[socket.id]}: ${message}`);
   });
