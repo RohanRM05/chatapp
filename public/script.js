@@ -4,7 +4,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const messageForm = document.getElementById('send-container');
   const messageInput = document.getElementById('message-input');
 
-  const name = prompt('What is your name?');
+  let name = localStorage.getItem('name');
+  if (!name) {
+    name = prompt('What is your name?');
+    localStorage.setItem('name', name);
+  }
   appendMessage('You joined');
   socket.emit('new-user', name);
 
