@@ -48,6 +48,10 @@ io.on('connection', (socket) => {
   console.log('New user connected');
 
   socket.on('new-user', (name) => {
+    if (!name) {
+      console.error('User name is null or undefined');
+      return;
+    }
     users[socket.id] = name;
     socket.broadcast.emit('user-connected', name);
     console.log(`${name} connected`);
@@ -55,14 +59,22 @@ io.on('connection', (socket) => {
 
   socket.on('send-chat-message', (message) => {
     const name = users[socket.id];
+    if (!name) {
+      console.error('Sending message failed: user name not found');
+      return;
+    }
     socket.broadcast.emit('chat-message', { message: message, name: name });
     console.log(`Message from ${name}: ${message}`);
   });
 
   socket.on('disconnect', () => {
     const name = users[socket.id];
-    socket.broadcast.emit('user-disconnected', name);
-    console.log(`${name} disconnected`);
-    delete users[socket.id];
+    if (name) {
+      socket.broadcast.emit('user-disconnected', name);
+      console.log(`${name} disconnected`);
+      delete users[socket.id];
+    } else {
+      console.error('Disconnect event: user name not found');
+    }
   });
 });
