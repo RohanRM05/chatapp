@@ -5,13 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Chat App</title>
-  <script defer src="localhost:3000/socket.io/socket.io.js"></script>
-  <script defer src=""></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="script.js"></script>
+  <link rel="stylesheet" href="/roomstyle.css">
 </head>
 <body>
   <div id="room-container">
-    <!-- låter oss används JavaScript kod direkt i HTML och 
-        %> används för att visa slutet av JavaScript delen-->
     <% Object.keys(rooms).forEach(room => { %>
       <div><%= room %></div>
       <a href="/<%= room %>">Join</a>
