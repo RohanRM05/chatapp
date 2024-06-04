@@ -54,13 +54,15 @@ io.on('connection', (socket) => {
   });
 
   socket.on('send-chat-message', (message) => {
-    socket.broadcast.emit('chat-message', { message: message, name: users[socket.id] });
-    console.log(`Message from ${users[socket.id]}: ${message}`);
+    const name = users[socket.id];
+    socket.broadcast.emit('chat-message', { message: message, name: name });
+    console.log(`Message from ${name}: ${message}`);
   });
 
   socket.on('disconnect', () => {
-    socket.broadcast.emit('user-disconnected', users[socket.id]);
-    console.log(`${users[socket.id]} disconnected`);
+    const name = users[socket.id];
+    socket.broadcast.emit('user-disconnected', name);
+    console.log(`${name} disconnected`);
     delete users[socket.id];
   });
 });
