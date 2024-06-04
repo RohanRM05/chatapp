@@ -4,6 +4,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const messageForm = document.getElementById('send-container');
   const messageInput = document.getElementById('message-input');
 
+  if (!messageContainer || !messageForm || !messageInput) {
+    console.error('One or more elements not found in the DOM');
+    return;
+  }
+
   let name = localStorage.getItem('name');
   if (!name) {
     name = prompt('What is your name?');
