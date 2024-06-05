@@ -21,13 +21,16 @@ body {
   background-color: #fff;
 }
 
-#room-container div {
+.room {
   margin: 10px auto;
   padding: 10px;
   border: 2px solid #000;
   border-radius: 5px;
   background-color: #fff;
   max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 #room-container a {
