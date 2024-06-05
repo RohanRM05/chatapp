@@ -47,34 +47,35 @@ const users = {};
 io.on('connection', (socket) => {
   console.log('New user connected');
 
-  socket.on('new-user', (name) => {
+  socket.on('new-user', (room, name) => {
     if (!name) {
       console.error('User name is null or undefined');
       return;
     }
-    users[socket.id] = name;
-    socket.broadcast.emit('user-connected', name);
-    console.log(`${name} connected`);
+    users[socket.id] = { name, room };
+    socket.join(room);
+    socket.to(room).broadcast.emit('user-connected', name);
+    console.log(`${name} connected to room ${room}`);
   });
 
-  socket.on('send-chat-message', (message) => {
-    const name = users[socket.id];
-    if (!name) {
-      console.error('Sending message failed: user name not found');
+  socket.on('send-chat-message', (room, message) => {
+    const user = users[socket.id];
+    if (!user) {
+      console.error('Sending message failed: user not found');
       return;
     }
-    socket.broadcast.emit('chat-message', { message: message, name: name });
-    console.log(`Message from ${name}: ${message}`);
+    socket.to(room).broadcast.emit('chat-message', { message: message, name: user.name });
+    console.log(`Message from ${user.name} in room ${room}: ${message}`);
   });
 
   socket.on('disconnect', () => {
-    const name = users[socket.id];
-    if (name) {
-      socket.broadcast.emit('user-disconnected', name);
-      console.log(`${name} disconnected`);
+    const user = users[socket.id];
+    if (user) {
+      socket.to(user.room).broadcast.emit('user-disconnected', user.name);
+      console.log(`${user.name} disconnected from room ${user.room}`);
       delete users[socket.id];
     } else {
-      console.error('Disconnect event: user name not found');
+      console.error('Disconnect event: user not found');
     }
   });
 });
