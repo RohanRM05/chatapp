@@ -15,8 +15,9 @@ document.addEventListener('DOMContentLoaded', () => {
     return; // Exit if no name is provided
   }
 
+  const roomName = document.getElementById('room-name').innerText;
   appendMessage('You joined');
-  socket.emit('new-user', name);
+  socket.emit('new-user', roomName, name);
 
   socket.on('chat-message', data => {
     appendMessage(`${data.name}: ${data.message}`);
@@ -34,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
     e.preventDefault();
     const message = messageInput.value;
     appendMessage(`You: ${message}`);
-    socket.emit('send-chat-message', message);
+    socket.emit('send-chat-message', roomName, message);
     messageInput.value = '';
   });
 
