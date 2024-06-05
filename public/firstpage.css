@@ -1,1 +1,68 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+}
+
+#room-container {
+  text-align: center;
+  margin-bottom: 20px;
+  width: 100%;
+  max-width: 600px;
+}
+
+#room-container div {
+  margin: 10px auto;
+  padding: 10px;
+  border: 2px solid #000;
+  border-radius: 5px;
+  background-color: #fff;
+  max-width: 300px;
+}
+
+#room-container a {
+  display: inline-block;
+  margin-top: 5px;
+  padding: 5px 10px;
+  border: 1px solid #000;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: #fff;
+  text-decoration: none;
+}
+
+#room-container a:hover {
+  background-color: #0056b3;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 600px;
+}
+
+form input, form button {
+  margin: 5px;
+  padding: 10px;
+  border: 2px solid #000;
+  border-radius: 5px;
+  width: 100%;
+  max-width: 300px;
+  box-sizing: border-box;
+}
+
+form button {
+  background-color: #28a745;
+  color: #fff;
+}
+
+form button:hover {
+  background-color: #218838;
+}
 
