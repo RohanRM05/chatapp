@@ -13,6 +13,8 @@ body {
   margin-bottom: 20px;
   width: 100%;
   max-width: 600px;
+  max-height: 80vh; /* Limit the height of the container */
+  overflow-y: auto; /* Enable vertical scrolling */
   padding: 20px;
   border: 4px solid #000;
   border-radius: 10px;
