@@ -1,46 +1,174 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const socket = io('https://chatapp-t3il.onrender.com'); // Updated URL
-  const messageContainer = document.getElementById('message-container');
-  const messageForm = document.getElementById('send-container');
-  const messageInput = document.getElementById('message-input');
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to right, #00ffff, #10665c);
+  padding: 10px;
+}
 
-  if (!messageContainer || !messageForm || !messageInput) {
-    console.error('One or more elements not found in the DOM');
-    return;
+.container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#room-container {
+  text-align: center;
+  margin-bottom: 20px;
+  width: 100%;
+  max-width: 600px;
+  max-height: 80vh;
+  overflow-y: auto;
+  padding: 20px;
+  border: 4px solid #000;
+  border-radius: 10px;
+  border-color: #2d3c0f;
+  background-color: #ffffff;
+}
+
+.room {
+  margin: 10px auto;
+  padding: 10px;
+  border: 2px solid #000;
+  border-radius: 5px;
+  background-color: #fff;
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+#room-container a {
+  display: inline-block;
+  margin-top: 5px;
+  padding: 5px 10px;
+  border: 1px solid #000;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: #fff;
+  text-decoration: none;
+}
+
+#room-container a:hover {
+  background-color: #0056b3;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 600px;
+  box-sizing: border-box;
+}
+
+form input {
+  margin: 5px;
+  padding: 10px;
+  border: 2px solid #000;
+  border-radius: 5px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+form button {
+  margin-top: 0;
+  padding: 10px;
+  border: 2px solid #000;
+  border-radius: 5px;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #00ff7f;
+  color: #665c74;
+}
+
+form button:hover {
+  background-color: #665c74;
+  color: #00ff7f;
+}
+
+.info-container {
+  text-align: center;
+  margin-top: 20px;
+  padding: 10px;
+  border: 2px solid #000;
+  border-radius: 5px;
+  background-color: #fff;
+  width: 100%;
+  max-width: 600px;
+  box-sizing: border-box;
+}
+
+@media (max-width: 600px) {
+  body {
+    padding: 5px;
   }
 
-  let name = prompt('What is your name?');
-  if (!name) {
-    console.error('No name entered');
-    return; // Exit if no name is provided
+  #room-container {
+    padding: 10px;
+    max-height: 60vh;
   }
 
-  appendMessage('You joined');
-  socket.emit('new-user', name);
-
-  socket.on('chat-message', data => {
-    appendMessage(`${data.name}: ${data.message}`);
-  });
-
-  socket.on('user-connected', name => {
-    appendMessage(`${name} connected`);
-  });
-
-  socket.on('user-disconnected', name => {
-    appendMessage(`${name} disconnected`);
-  });
-
-  messageForm.addEventListener('submit', e => {
-    e.preventDefault();
-    const message = messageInput.value;
-    appendMessage(`You: ${message}`);
-    socket.emit('send-chat-message', message);
-    messageInput.value = '';
-  });
-
-  function appendMessage(message) {
-    const messageElement = document.createElement('div');
-    messageElement.innerText = message;
-    messageContainer.append(messageElement);
+  .room {
+    max-width: 100%;
+    padding: 5px;
   }
-});
+
+  form input, form button {
+    max-width: 100%;
+  }
+
+  .info-container {
+    padding: 5px;
+    max-width: 100%;
+  }
+}
+
+.gdpr-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  text-align: center;
+  padding: 10px;
+  display: none;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.gdpr-banner p {
+  margin: 0;
+}
+
+.gdpr-banner button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.gdpr-banner button:hover {
+  background-color: #218838;
+}
+
+footer {
+  width: 100%;
+  padding: 20px;
+  background-color: #000000;
+  color: #3aaa79;
+  text-align: center;
+  margin-top: auto;
+  box-sizing: border-box;
+}
+
+footer p {
+  margin: 5px 0;
+}
