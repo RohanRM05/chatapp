@@ -82,12 +82,13 @@ form button {
   border-radius: 5px;
   width: 100%;
   box-sizing: border-box;
-  background-color: #28a745;
-  color: #fff;
+  background-color: #00ff7f;
+  color: #665c74;
 }
 
 form button:hover {
-  background-color: #218838;
+  background-color: #665c74;
+  color: #00ff7f;
 }
 
 .info-container {
