@@ -5,20 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Chat App</title>
-  <script>
-document.getElementById('acceptCookies').addEventListener('click', function() {
-    document.getElementById('gdprBanner').style.display = 'none';
-    localStorage.setItem('cookiesAccepted', 'true');
-  });
-  
-  window.onload = function() {
-    if (!localStorage.getItem('cookiesAccepted')) {
-      document.getElementById('gdprBanner').style.display = 'flex';
-    }
-  };
-
-</script>
   <link rel="stylesheet" href="/firstpage.css">
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      document.getElementById('acceptCookies').addEventListener('click', function() {
+        document.getElementById('gdprBanner').style.display = 'none';
+        localStorage.setItem('cookiesAccepted', 'true');
+      });
+  
+      if (!localStorage.getItem('cookiesAccepted')) {
+        document.getElementById('gdprBanner').style.display = 'flex';
+      }
+    });
+  </script>
 </head>
 <body>
   <div id="room-container">
@@ -34,10 +33,9 @@ document.getElementById('acceptCookies').addEventListener('click', function() {
     <button type="submit">New Room</button>
   </form>
 
-<div class="gdpr-banner" id="gdprBanner">
-  <p>We use cookies to ensure you get the best experience on our website. <a href="/privacy-policy" target="_blank">Learn more</a></p>
-  <button id="acceptCookies">Accept</button>
-</div>
-
+  <div class="gdpr-banner" id="gdprBanner">
+    <p>We use cookies to ensure you get the best experience on our website. <a href="/privacy-policy" target="_blank">Learn more</a></p>
+    <button id="acceptCookies">Accept</button>
+  </div>
 </body>
 </html>
