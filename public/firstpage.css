@@ -1,13 +1,18 @@
 body {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   min-height: 100vh;
   margin: 0;
   font-family: Arial, sans-serif;
   background-color: #f0f0f0;
   padding: 10px;
+}
+
+.container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 #room-container {
@@ -159,7 +164,7 @@ footer {
   padding: 20px;
   background-color: #ccc;
   text-align: center;
-  margin-top: 20px;
+  margin-top: auto;
   box-sizing: border-box;
 }
 
