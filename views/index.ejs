@@ -20,27 +20,30 @@
   </script>
 </head>
 <body>
-  <div id="room-container">
-    <% Object.keys(rooms).forEach(room => { %>
-      <div class="room">
-        <div><%= room %></div>
-        <a href="/<%= room %>">Join</a>
-      </div>
-    <% }) %>
-  </div>
-  <form action="/room" method="POST">
-    <input name="room" type="text" required autocomplete="off">
-    <button type="submit">New Room</button>
-  </form>
+  <div class="container">
+    <div id="room-container">
+      <% Object.keys(rooms).forEach(room => { %>
+        <div class="room">
+          <div><%= room %></div>
+          <a href="/<%= room %>">Join</a>
+        </div>
+      <% }) %>
+    </div>
+    <form action="/room" method="POST">
+      <input name="room" type="text" required autocomplete="off">
+      <button type="submit">New Room</button>
+    </form>
 
-  <div class="info-container">
-    <p>By using Chat-App, you agree that all chats are logged for security purposes. Your messages and related data, such as timestamps and IP addresses, will be securely stored and used to maintain a safe environment. We will not share this data with third parties except as required by law. Users are responsible for their content; inappropriate or illegal activity may result in account termination or legal action. While we strive to protect your data, complete security cannot be guaranteed. By continuing to use Chat-App, you agree to this disclaimer. For more information, please refer to our Privacy Policy and Terms of Service or contact us at [Your Contact Information].</p>
+    <div class="info-container">
+      <p>All chat logs will be saved and can be used for legal actions if needed.</p>
+    </div>
   </div>
 
   <div class="gdpr-banner" id="gdprBanner">
     <p>We use cookies to ensure you get the best experience on our website. <a href="/privacy-policy" target="_blank">Learn more</a></p>
     <button id="acceptCookies">Accept</button>
   </div>
+
   <footer>
     <p>© 2024 Abdinasir Y. Ali. This project was created for HTML classes.</p>
     <p>All rights reserved. Unauthorized use of any assets from this source code is prohibited.</p>
