@@ -102,7 +102,7 @@ form button:hover {
   box-sizing: border-box;
 }
 
-/* Media query for smaller screens */
+
 @media (max-width: 600px) {
   body {
     padding: 5px;
