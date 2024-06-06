@@ -11,13 +11,21 @@
       const gdprBanner = document.getElementById('gdprBanner');
       const acceptCookiesBtn = document.getElementById('acceptCookies');
       
-      acceptCookiesBtn.addEventListener('click', function() {
-        gdprBanner.style.display = 'none';
-        localStorage.setItem('cookiesAccepted', 'true');
-      });
+      if (acceptCookiesBtn) {
+        acceptCookiesBtn.addEventListener('click', function() {
+          gdprBanner.style.display = 'none';
+          localStorage.setItem('cookiesAccepted', 'true');
+        });
+      } else {
+        console.error('GDPR accept button not found');
+      }
 
       if (!localStorage.getItem('cookiesAccepted')) {
-        gdprBanner.style.display = 'flex';
+        if (gdprBanner) {
+          gdprBanner.style.display = 'flex';
+        } else {
+          console.error('GDPR banner not found');
+        }
       }
     });
   </script>
