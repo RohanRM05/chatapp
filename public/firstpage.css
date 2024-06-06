@@ -25,7 +25,8 @@ body {
   padding: 20px;
   border: 4px solid #000;
   border-radius: 10px;
-  background-color: #fff;
+  border-color: #2d3c0f;
+  background-color: #ffffff;
 }
 
 .room {
