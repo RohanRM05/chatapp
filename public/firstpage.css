@@ -158,11 +158,11 @@ form button:hover {
   background-color: #218838;
 }
 
-/* Footer styles */
 footer {
   width: 100%;
   padding: 20px;
-  background-color: #ccc;
+  background-color: #000000;
+  color: #3aaa79;
   text-align: center;
   margin-top: auto;
   box-sizing: border-box;
