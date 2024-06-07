@@ -6,18 +6,6 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Chat App</title>
   <link rel="stylesheet" href="/firstpage.css">
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      document.getElementById('acceptCookies').addEventListener('click', function() {
-        document.getElementById('gdprBanner').style.display = 'none';
-        localStorage.setItem('cookiesAccepted', 'true');
-      });
-
-      if (!localStorage.getItem('cookiesAccepted')) {
-        document.getElementById('gdprBanner').style.display = 'flex';
-      }
-    });
-  </script>
 </head>
 <body>
   <div class="container">
@@ -37,11 +25,6 @@
     <div class="info-container">
       <p>By using Chat-App, you agree that all chats are logged for security purposes. Your messages and related data will be securely stored and only shared as required by law. Users are responsible for their content; inappropriate activity may result in account termination or legal action. We strive to protect your data but cannot guarantee complete security. By continuing to use Chat-App, you agree to this disclaimer.</p>
     </div>
-  </div>
-
-  <div class="gdpr-banner" id="gdprBanner">
-    <p>We use cookies to ensure you get the best experience on our website. <a href="/privacy-policy" target="_blank">Learn more</a></p>
-    <button id="acceptCookies">Accept</button>
   </div>
 
   <footer>
