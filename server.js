@@ -45,23 +45,19 @@ server.listen(PORT, () => {
 const users = {};
 
 io.on('connection', (socket) => {
-  console.log('New user connected');
 
   socket.on('new-user', (room, name) => {
     if (!name || !room) {
-      console.error('User name or room is null or undefined');
       return;
     }
     users[socket.id] = { name, room };
     socket.join(room);
     socket.broadcast.to(room).emit('user-connected', name);
-    console.log(`${name} connected to room ${room}`);
   });
 
   socket.on('send-chat-message', (room, message) => {
     const user = users[socket.id];
     if (!user || user.room !== room) {
-      console.error('Sending message failed: user not found in room');
       return;
     }
     socket.broadcast.to(room).emit('chat-message', { message: message, name: user.name });
@@ -75,7 +71,6 @@ io.on('connection', (socket) => {
       console.log(`${user.name} disconnected from room ${user.room}`);
       delete users[socket.id];
     } else {
-      console.error('Disconnect event: user not found');
     }
   });
 });
