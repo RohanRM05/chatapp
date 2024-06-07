@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const socket = io('https://chatapp-t3il.onrender.com'); 
+  const socket = io('https://chatapp-t3il.onrender.com'); // Updated URL
   const messageContainer = document.getElementById('message-container');
   const messageForm = document.getElementById('send-container');
   const messageInput = document.getElementById('message-input');
@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let name = prompt('What is your name?');
   if (!name) {
     console.error('No name entered');
-    return; 
+    return; // Exit if no name is provided
   }
 
   appendMessage('You joined');
@@ -33,7 +33,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   messageForm.addEventListener('submit', e => {
     e.preventDefault();
-    const message = messageInput.value;
+    const message = messageInput.value.trim();
+    if (message === '') {
+      console.error('Cannot send an empty message');
+      return;
+    }
     appendMessage(`You: ${message}`);
     socket.emit('send-chat-message', room, message);
     messageInput.value = '';
