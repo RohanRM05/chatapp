@@ -20,7 +20,7 @@ body {
   margin-bottom: 20px;
   width: 100%;
   max-width: 600px;
-  height: 400px; /* Fixed height */
+  height: 400px; 
   overflow-y: auto;
   padding: 20px;
   border: 4px solid #000;
@@ -111,7 +111,7 @@ form button:hover {
 
   #room-container {
     padding: 10px;
-    height: 60vh; /* Adjusted for smaller screens */
+    height: 60vh;
   }
 
   .room {
