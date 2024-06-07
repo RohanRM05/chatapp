@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     return;
   }
 
+  const room = window.location.pathname.substring(1);
   let name = prompt('What is your name?');
   if (!name) {
     console.error('No name entered');
@@ -16,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   appendMessage('You joined');
-  socket.emit('new-user', name);
+  socket.emit('new-user', room, name);
 
   socket.on('chat-message', data => {
     appendMessage(`${data.name}: ${data.message}`);
@@ -34,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
     e.preventDefault();
     const message = messageInput.value;
     appendMessage(`You: ${message}`);
-    socket.emit('send-chat-message', message);
+    socket.emit('send-chat-message', room, message);
     messageInput.value = '';
   });
 
