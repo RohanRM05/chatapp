@@ -5,7 +5,7 @@ body {
   margin: 0;
   font-family: Arial, sans-serif;
   background: linear-gradient(to right, #00ffff, #10665c);
-  padding: 10px;
+  padding: 0;
 }
 
 .container {
@@ -166,7 +166,7 @@ footer {
   margin-top: auto;
   box-sizing: border-box;
   padding: 0;
-  border: none;
+  margin: 0;
 }
 
 footer p {
