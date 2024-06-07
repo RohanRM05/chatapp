@@ -5,7 +5,7 @@ const server = http.createServer(app);
 const { Server } = require('socket.io');
 const io = new Server(server, {
   cors: {
-    origin: "https://chatapp-t3il.onrender.com", // Allow your client URL
+    origin: "https://chatapp-t3il.onrender.com", 
     methods: ["GET", "POST"]
   }
 });
